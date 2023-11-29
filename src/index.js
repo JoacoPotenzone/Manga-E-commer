@@ -1,4 +1,4 @@
-const express = require('express');
+/* const express = require('express');
 const ProductManager = require("./productManager");
 
 const app = express();
@@ -35,4 +35,4 @@ app.get("/products/:pid", async (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`Server listening on port http:/localhost:${PORT}`);
-});
+}); */
