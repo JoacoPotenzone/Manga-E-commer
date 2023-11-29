@@ -1,0 +1,56 @@
+[
+    {
+      "id": 1,
+      "title": "Berserk",
+      "description": "Manga de fines de los años 80, Kentaro Miura, su creador creó no sólo un manga si no una forma distinta de ver el conocido 'camino del héroe'.",
+      "price": 5000,
+      "thumbnail": "https://m.media-amazon.com/images/I/91D07epNE9L._AC_UF1000,1000_QL80_.jpg",
+      "code": "ASKJF454",
+      "stock": 10
+    },
+    {
+      "id": 2,
+      "title": "Neon Genesis Evangelion",
+      "description": "También de los años 90 como Berserk, Yoshiyuki Sadamoto, creó un Shonen distinto al resto, con tintes de acción pero metiendose en el inconsciente humano como si fuese una obra de Sigmund Freud.",
+      "price": 4300,
+      "thumbnail": "https://acdn.mitiendanube.com/stores/399/159/products/evangeliondeluxe_041-9c5a1a1ff170dbd76b15682242812787-640-0.jpg",
+      "code": "BAHS854",
+      "stock": 15
+    },
+    {
+      "id": 3,
+      "title": "Soichi y sus maldiciones caprichosas",
+      "description": "Junji Ito, en otra de sus grandes obras de terror, y uno de sus personajes más característicos Soichi.",
+      "price": 4500,
+      "thumbnail": "https://acdn.mitiendanube.com/stores/399/159/products/soichi1-c7e0bfeca33567f5c016280947761385-640-0.jpg",
+      "code": "CKAS354",
+      "stock": 10
+    },
+    {
+      "id": 4,
+      "title": "Jujutsu Kaisen 1",
+      "description": "La primer entrega de Jujutsu Kaisen (sin contar la precuela 'Jujutsu Kaisen 0') da inmersión a la historia de Itadori.",
+      "price": 2000,
+      "thumbnail": "https://static.wikia.nocookie.net/jujutsu-kaisen/images/0/0e/Volume_1.png/revision/latest?cb=20200905220554&path-prefix=es",
+      "code": "DKAS913",
+      "stock": 18
+    },
+    {
+      "id": 5,
+      "title": "Slam Dunk",
+      "description": "El manga de deporte por excelencia, donde el amor, el deporte y la superación personal se interponen en el equipo de la secundaria Shohoku.",
+      "price": 5500,
+      "thumbnail": "https://acdn.mitiendanube.com/stores/399/159/products/slamdunkultimate011-f68662bd4b37e8ee8616208262261072-640-0.jpg",
+      "code": "ELUS573",
+      "stock": 13
+    },
+    {
+      "id": 6,
+      "title": "Samurai X: Rurouni Kenshin",
+      "description": "Himura Kenshin, el imbatible samurai de la era Meiji, es ahora un pacifista que quiere remediar sus asesinatos para lograr este cambio de Era.",
+      "price": 3990,
+      "thumbnail": "https://static.wikia.nocookie.net/samuraix/images/a/ae/Volumen_1.jpg/revision/latest?cb=20121129195826&path-prefix=es",
+      "code": "FPQS741",
+      "stock": 15
+    }
+  ]
