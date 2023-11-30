@@ -6,7 +6,7 @@ class ProductManager {
   }
 
   async getProducts() {
-    const productosArchivadosString = await fs.promises.readFile(__dirname + 'products.json', 'utf-8');
+    const productosArchivadosString = await fs.promises.readFile('./src/data/products.json', 'utf-8');
     const productosArchivadosArray = JSON.parse(productosArchivadosString);
     return productosArchivadosArray;
   }
