@@ -1,76 +1,58 @@
 const { Router } = require('express');
 const ProductManager = require('../manager/productManager');
-const productManager = new ProductManager('../data/products.json');
+
 const router = Router();
 
-router
-    .get('/', async (req, res) => {
-        try {
-            await productManager.readFromFile();
-            const limit = parseInt(req.query.limit);
-            const allProducts = await productManager.getProducts();
+const firstManager = new ProductManager();
+async function inicializarProductos() {
+  const productos = await firstManager.getProducts()
+  firstManager.productos = productos;
+}
 
-            if (!isNaN(limit)) {
-                const limitedProducts = allProducts.slice(0, limit);
-                res.json(limitedProducts);
-            } else {
-                res.json(allProducts);
-            }
-        } catch (error) {
-            console.error(error);
-            res.status(500).send('Error interno del servidor');
-        }
-    })
+inicializarProductos()
 
-    .get('/:pid', async (req, res) => {
-        const id = parseInt(req.params.pid);
-        try {
-            await productManager.readFromFile();
-            const producto = productManager.getProductById(id);
+router.get('/', async (req, res) => {
+  const products = await firstManager.getProducts();
+  const limit = parseInt(req.query.limit);
+  if(isNaN(limit)) {
+    res.json(products);
+  }else {
+    const productsLimit = products.slice(0, limit);
+    res.status(200).json(productsLimit)
+  }
+})
 
-            if (producto) {
-                res.json(producto);
-            } else {
-                res.status(404).send('Producto no encontrado');
-            }
-        } catch (error) {
-            console.error(error);
-            res.status(500).send('Error interno del servidor');
-        }
-    })
+router.get('/:pid', async (req, res) => {
+  const productId = req.params.pid;
+  const productoEncontrado = await firstManager.getProductById(productId);
+  if(productoEncontrado) {
+    res.status(200).json(productoEncontrado);
+  }
+  else{
+    res.status(404).send('No se encontró ningún producto.')
+  }
+})
 
-    .put('/:id', (req, res) => {
-        const productId = parseInt(req.params.id);
+router.post('/', async (req, res) => {
+  let newProduct = req.body;
+  await firstManager.addProduct(newProduct.title,newProduct.category,newProduct.description,newProduct.price,newProduct.thumbnail,newProduct.code,newProduct.stock,newProduct.status)
+  res.status(200).send("¡Producto agregado con exito!")
+})
 
-        if (isNaN(productId)) {
-            return res.status(400).json({ error: 'ID no válido.' });
-        }
+router.put('/:pid', async (req,res) => {
+  const productId = parseInt(req.params.pid);
+  let updateData = req.body;
+  try {
+    await firstManager.updateProduct(productId, updateData.newTitle, updateData.newCategory, updateData.newDescription, updateData.newPrice, updateData.newThumbnail, updateData.newCode, updateData.newStock, updateData.newStatus);
+  } catch(error) {
+    res.status(404).send('No se pudo actualizar el producto.')
+  }
+})
 
-        const updatedProductData = req.body;
-
-        productManager.updateProduct(productId, updatedProductData);
-        res.json({ message: `Producto con ID ${productId} actualizado con éxito.` });
-    })
-
-    .delete('/:id', (req, res) => {
-        const productId = parseInt(req.params.id);
-        if (isNaN(productId)) {
-            return res.status(400).json({ error: 'ID no válido.' });
-        }
-        res.json(productManager.deleteProduct(productId));
-
-    })
-
-
-
-    .post('/', (req, res) => {
-        const { title, description, price, thumbnail, code, stock, status, category } = req.body;
-
-        productManager.addProduct(title, description, price, thumbnail, code, stock, status, category);
-        res.json({ message: 'Producto agregado con éxito.' });
-    })
-
-
-
+router.delete('/:pid', async (req, res) => {
+  const productId = req.params.pid;
+  await firstManager.deleteProduct(productId)
+  res.status(200).send(`Producto con id: ${productId} eliminado exitosamente`)
+})
 
 module.exports = router;
